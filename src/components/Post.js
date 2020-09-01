@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-const Post = ({ header, body, transitionItem }) => {
+const Post = ({ header, body, transitionItem, comments }) => {
   return (
     <motion.div
       className="h-auto mt-2 mb-2  max-w-sm p-2 rounded-sm border"
@@ -11,7 +11,7 @@ const Post = ({ header, body, transitionItem }) => {
       <p className="mb-2">{body}</p>
       <div className="flex justify-end text-blue-500">
         <div className="flex items-center">
-          <span>5</span>
+          <span>{comments.length}</span>
           <i className="far fa-comment-alt ml-1 cursor-pointer"></i>
         </div>
       </div>

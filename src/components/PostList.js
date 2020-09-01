@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Post from "./Post";
 import { AppContext } from "../context/AppContext";
 
@@ -35,16 +35,17 @@ const PostList = () => {
           ? null
           : `${people[clickedPerson].name.first.toUpperCase()}'S TIMELINE`}{" "}
       </h1>
-      {/* {loading
+      {loading
         ? null
-        : people[clickedPerson].posts.map((post) => (
+        : people[clickedPerson].posts.map((element) => (
             <Post
-              key={post.id}
-              header={post.title}
-              body={post.body}
+              key={element.post.id}
+              header={element.post.title}
+              body={element.post.body}
               transitionItem={transitionItem}
+              comments={element.comments}
             />
-          ))} */}
+          ))}
     </motion.div>
   );
 };

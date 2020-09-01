@@ -47,7 +47,7 @@ export const AppProvider = ({ children }) => {
       posts = posts.map((post, index) => {
         return {
           post,
-          commments: comments[index],
+          comments: comments[index],
         };
       });
 

@@ -8,7 +8,7 @@ const ProfileImg = ({ id, picture }) => {
   const selected = clickedPerson === id ? "bg-blue-700" : "";
 
   return (
-    <div className={`${selected}`}>
+    <div className={`${selected} flex justify-center`}>
       <img
         className={`rounded-full h-8 w-8 md:w-10 md:h-10 lg:h-12 lg:w-12 m-2 cursor-pointer`}
         src={picture}

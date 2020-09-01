@@ -40,11 +40,10 @@ export const AppProvider = ({ children }) => {
       const comments = [];
       for (let j = 1; j <= numPosts; j++) {
         comment_counter++;
-        const comment = await axios.get(
+        let comment = await axios.get(
           `https://jsonplaceholder.typicode.com/posts/${comment_counter}/comments`
         );
-        console.log(comment_counter);
-        comments.push(comment.data);
+        comments.push(comment.data.slice(0, Math.random() * (6 - 1) + 1));
       }
 
       // Match fake posts with their respective fake comments

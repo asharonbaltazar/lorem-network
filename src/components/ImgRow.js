@@ -1,13 +1,21 @@
-import React, { useContext } from "react";
+import React from "react";
 import ProfileImg from "./ProfileImg";
 
-const ImgRow = ({ people }) => {
+const ImgRow = ({ people, loading }) => {
   return (
-    <div className="bg-blue-800 w-full flex flex-row content-center sm:sticky sm:top-0 lg:flex-col lg:w-24 z-10">
-      {people.map((person, index) => (
-        <ProfileImg key={index} id={index} picture={person.picture["medium"]} />
-      ))}
-    </div>
+    <>
+      {loading ? null : (
+        <div className="bg-blue-800 w-full flex flex-row content-center sticky top-0 lg:flex-col lg:w-24 z-10 lg:z-0 flex-shrink-0">
+          {people.map((person, index) => (
+            <ProfileImg
+              key={index}
+              id={index}
+              picture={person.picture["medium"]}
+            />
+          ))}
+        </div>
+      )}
+    </>
   );
 };
 

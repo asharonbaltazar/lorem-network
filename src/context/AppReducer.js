@@ -13,6 +13,13 @@ export default (state, action) => {
         clickedPerson: action.payload,
       };
 
+    case "SHOW_COMMENTS":
+      return {
+        ...state,
+        comments:
+          state.people[state.clickedPerson].posts[action.payload - 1].comments,
+      };
+
     default:
       return {
         ...state,

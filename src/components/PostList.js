@@ -25,7 +25,7 @@ const PostList = () => {
 
   return (
     <motion.div
-      className="sm:w-full sm:justify-center md:w-2/4 lg:w-5/12 p-2"
+      className="w-full justify-center md:w-3/5 lg:w-3/4 p-2"
       initial="hidden"
       animate="visible"
       variants={transitionList}
@@ -33,13 +33,14 @@ const PostList = () => {
       <h1 className="font-bold">
         {loading
           ? null
-          : `${people[clickedPerson].name.first.toUpperCase()}'S TIMELINE`}{" "}
+          : `${people[clickedPerson].name.first.toUpperCase()}'S TIMELINE`}
       </h1>
       {loading
         ? null
         : people[clickedPerson].posts.map((element) => (
             <Post
               key={element.post.id}
+              id={element.post.id}
               header={element.post.title}
               body={element.post.body}
               transitionItem={transitionItem}

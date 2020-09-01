@@ -7,6 +7,7 @@ const initialState = {
   people: [],
   loading: true,
   clickedPerson: 0,
+  comments: [],
 };
 
 export const AppContext = createContext(initialState);
@@ -24,6 +25,7 @@ export const AppProvider = ({ children }) => {
 
     // Create fake people
     const people = [];
+    let multiplier = 1;
     for (let i = 1; i <= numPeople; i++) {
       const person = await axios.get(
         "https://randomuser.me/api/?nat=us,dk,fr,gb&inc=gender,name,picture"
@@ -38,7 +40,9 @@ export const AppProvider = ({ children }) => {
       const comments = [];
       for (let i = 1; i <= numPosts; i++) {
         const comment = await axios.get(
-          `https://jsonplaceholder.typicode.com/posts/${i}/comments`
+          `https://jsonplaceholder.typicode.com/posts/${
+            i * multiplier
+          }/comments`
         );
         comments.push(comment.data);
       }
@@ -55,12 +59,20 @@ export const AppProvider = ({ children }) => {
         ...person.data.results[0],
         posts,
       });
+      multiplier += 10;
     }
     dispatch({ type: "LOAD_PEOPLE", payload: people });
   };
 
+  // Change the clicked person
   const changeClickedPerson = (id) => {
     dispatch({ type: "CHANGE_CLICKED_PERSON", payload: +id });
+  };
+
+  // Get comments id
+  const showComments = (id) => {
+    console.log(state.people[state.clickedPerson].posts);
+    // dispatch({ type: "SHOW_COMMENTS", payload: +id });
   };
 
   return (
@@ -69,8 +81,10 @@ export const AppProvider = ({ children }) => {
         people: state.people,
         loading: state.loading,
         clickedPerson: state.clickedPerson,
+        comments: state.comments,
         getPeoplewithPosts,
         changeClickedPerson,
+        showComments,
       }}
     >
       {children}

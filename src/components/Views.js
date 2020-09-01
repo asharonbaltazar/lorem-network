@@ -6,7 +6,7 @@ import { AppContext } from "../context/AppContext";
 
 const Views = () => {
   const appContext = useContext(AppContext);
-  const { getPeoplewithPosts, people } = appContext;
+  const { getPeoplewithPosts, people, loading } = appContext;
 
   useEffect(() => {
     getPeoplewithPosts(5);
@@ -14,11 +14,11 @@ const Views = () => {
   }, []);
 
   return (
-    <div className="flex flex-col lg:flex-row">
+    <div className="flex flex-col lg:flex-row h-auto">
       <ImgRow people={people} />
-      <div className="flex lg:flex-row overflow-hidden">
+      <div className="flex lg:flex-row relative">
         <PostList />
-        <CommentList />
+        {loading ? null : <CommentList />}
       </div>
     </div>
   );

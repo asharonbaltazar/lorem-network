@@ -7,7 +7,7 @@ import { AppProvider } from "./context/AppContext";
 function App() {
   return (
     <AppProvider>
-      <div className="App h-screen">
+      <div className="App">
         <Panel />
         <Views />
       </div>

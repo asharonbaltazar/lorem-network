@@ -5,7 +5,8 @@ const ProfileImg = ({ id, picture }) => {
   const appContext = useContext(AppContext);
   const { clickedPerson, changeClickedPerson } = appContext;
 
-  const selected = clickedPerson === id ? "bg-blue-700" : "";
+  const selected =
+    clickedPerson === id ? "bg-blue-700" : "lg:hover:bg-blue-900";
 
   return (
     <div className={`${selected} flex justify-center`}>

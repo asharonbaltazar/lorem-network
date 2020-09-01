@@ -20,12 +20,12 @@ export const AppProvider = ({ children }) => {
   const getPeoplewithPosts = async (numPeople = 10, numPosts = 10) => {
     // Create fake posts
     const JSONposts = await axios.get(
-      `http://jsonplaceholder.typicode.com/posts?_limit=${numPosts * 10}`
+      `http://jsonplaceholder.typicode.com/posts?_limit=${numPosts * numPeople}`
     );
 
     // Create fake people
     const people = [];
-    let multiplier = 1;
+    let comment_counter = 0;
     for (let i = 1; i <= numPeople; i++) {
       const person = await axios.get(
         "https://randomuser.me/api/?nat=us,dk,fr,gb&inc=gender,name,picture"
@@ -38,12 +38,12 @@ export const AppProvider = ({ children }) => {
 
       // Create fake comments to fake posts
       const comments = [];
-      for (let i = 1; i <= numPosts; i++) {
+      for (let j = 1; j <= numPosts; j++) {
+        comment_counter++;
         const comment = await axios.get(
-          `https://jsonplaceholder.typicode.com/posts/${
-            i * multiplier
-          }/comments`
+          `https://jsonplaceholder.typicode.com/posts/${comment_counter}/comments`
         );
+        console.log(comment_counter);
         comments.push(comment.data);
       }
 
@@ -59,7 +59,6 @@ export const AppProvider = ({ children }) => {
         ...person.data.results[0],
         posts,
       });
-      multiplier += 10;
     }
     dispatch({ type: "LOAD_PEOPLE", payload: people });
   };
@@ -71,8 +70,7 @@ export const AppProvider = ({ children }) => {
 
   // Get comments id
   const showComments = (id) => {
-    console.log(state.people[state.clickedPerson].posts);
-    // dispatch({ type: "SHOW_COMMENTS", payload: +id });
+    dispatch({ type: "SHOW_COMMENTS", payload: +id });
   };
 
   return (

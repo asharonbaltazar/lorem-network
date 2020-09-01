@@ -16,8 +16,9 @@ export default (state, action) => {
     case "SHOW_COMMENTS":
       return {
         ...state,
-        comments:
-          state.people[state.clickedPerson].posts[action.payload - 1].comments,
+        comments: state.people[state.clickedPerson].posts.filter(
+          (post) => post.post.id === action.payload
+        )[0].comments,
       };
 
     default:

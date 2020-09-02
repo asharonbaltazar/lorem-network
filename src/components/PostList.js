@@ -25,7 +25,7 @@ const PostList = () => {
 
   return (
     <motion.div
-      className="w-full justify-center md:w-3/5 lg:w-3/4 p-2"
+      className="md:w-2/4 lg:w-5/12 justify-center p-2"
       initial="hidden"
       animate="visible"
       variants={transitionList}

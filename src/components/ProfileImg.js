@@ -11,7 +11,7 @@ const ProfileImg = ({ id, picture }) => {
   return (
     <div className={`${selected} flex justify-center`}>
       <img
-        className={`rounded-full h-8 w-8 md:w-10 md:h-10 lg:h-12 lg:w-12 m-2 cursor-pointer`}
+        className={`rounded-full h-12 w-12 md:w-14 md:h-14 lg:h-14 lg:w-14 m-2 cursor-pointer`}
         src={picture}
         alt="thumbnail"
         id={id}

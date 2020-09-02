@@ -83,7 +83,6 @@ export const AppProvider = ({ children }) => {
 
   // Get comments id
   const showComments = (id) => {
-    console.log(id);
     dispatch({ type: "SHOW_COMMENTS", payload: +id });
   };
 

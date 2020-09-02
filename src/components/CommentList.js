@@ -1,15 +1,11 @@
 import React, { useContext } from "react";
 import Comment from "./Comment";
 import { AppContext } from "../context/AppContext";
-import { useMediaPredicate } from "react-media-hook";
 import { Route } from "react-router-dom";
 
 const CommentList = () => {
   const appContext = useContext(AppContext);
-  const { loading, comments } = appContext;
-
-  // Media query
-  const phoneSize = useMediaPredicate("(min-width: 770px)");
+  const { comments } = appContext;
 
   return (
     <Route

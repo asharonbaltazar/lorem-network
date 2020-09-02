@@ -8,13 +8,14 @@ import { useMediaPredicate } from "react-media-hook";
 
 const Views = () => {
   const appContext = useContext(AppContext);
-  const { getPeoplewithPosts, people, loading } = appContext;
+  const { getPeoplewithPosts, showComments, people, loading } = appContext;
 
   // Media query
   const laptopSize = useMediaPredicate("(min-width: 770px)");
 
   useEffect(() => {
     getPeoplewithPosts(5);
+    if (loading) showComments(1);
     //eslint-disable-next-line
   }, []);
 

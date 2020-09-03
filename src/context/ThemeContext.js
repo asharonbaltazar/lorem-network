@@ -4,6 +4,7 @@ import ThemeReducer from "./ThemeReducer";
 // Initial theme state
 const initialState = {
   theme: "-blue-",
+  baseTheme: "bg-white",
 };
 
 export const ThemeContext = createContext(initialState);
@@ -13,17 +14,22 @@ export const ThemeProvider = ({ children }) => {
 
   // Select theme
   const changeTheme = (theme) => {
-    console.log(initialState.theme);
     const regex = /-([\w-]+)-/g;
     theme = theme.match(regex);
-    console.log(theme[0]);
     dispatch({ type: "CHANGE_THEME", payload: theme[0] });
+  };
+
+  const changeBaseTheme = (toggle) => {
+    const theme = toggle ? "bg-white" : "bg-black";
+    dispatch({ type: "CHANGE_BASE_THEME", payload: theme });
   };
 
   return (
     <ThemeContext.Provider
       value={{
         theme: state.theme,
+        baseTheme: state.baseTheme,
+        changeBaseTheme,
         changeTheme,
       }}
     >

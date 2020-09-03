@@ -5,11 +5,16 @@ import ImgRow from "./ImgRow";
 import CommentList from "./CommentList";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
+import { ThemeContext } from "../context/ThemeContext";
 import { useMediaPredicate } from "react-media-hook";
 
 const Views = () => {
   const appContext = useContext(AppContext);
   const { getPeoplewithPosts, people, loading } = appContext;
+  const themeContext = useContext(ThemeContext);
+  const { baseTheme } = themeContext;
+
+  const textColor = baseTheme === "bg-white" ? "text-black" : "text-white";
 
   // Media query
   const laptopSize = useMediaPredicate("(min-width: 770px)");
@@ -21,16 +26,16 @@ const Views = () => {
 
   const loadingStyles = loading
     ? "flex h-64 justify-center items-center"
-    : "flex flex-col lg:flex-row h-auto";
+    : "flex flex-col lg:flex-row overflow-hidden";
 
   return (
     <Router>
       <div className={loadingStyles}>
         <ImgRow people={people} />
         <div
-          className={`flex lg:flex-row ${
+          className={`flex lg:flex-row  ${textColor} ${
             loading ? "justify-center" : ""
-          } relative w-full`}
+          } relative w-full h-full ${baseTheme}`}
         >
           {loading ? (
             <div className="h-full">

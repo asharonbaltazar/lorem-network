@@ -6,6 +6,12 @@ export default (state, action) => {
         theme: action.payload,
       };
 
+    case "CHANGE_BASE_THEME":
+      return {
+        ...state,
+        baseTheme: action.payload,
+      };
+
     default:
       return {
         ...state,

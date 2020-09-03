@@ -3,10 +3,14 @@ import { motion } from "framer-motion";
 import { AppContext } from "../context/AppContext";
 import { Link } from "react-router-dom";
 import { useMediaPredicate } from "react-media-hook";
+import { ThemeContext } from "../context/ThemeContext";
 
 const Post = ({ id, header, body, transitionItem, comments }) => {
   const appContext = useContext(AppContext);
   const { showComments } = appContext;
+
+  const themeContext = useContext(ThemeContext);
+  const { theme } = themeContext;
 
   // Media query
   const laptopSize = useMediaPredicate("(min-width: 770px)");
@@ -18,7 +22,7 @@ const Post = ({ id, header, body, transitionItem, comments }) => {
     >
       <h1 className="font-semibold text-lg mb-4">{header}</h1>
       <p className="mb-2">{body}</p>
-      <div className="flex justify-end text-blue-500">
+      <div className={`flex justify-end text${theme}500`}>
         <div className="flex items-center">
           <span>{comments.length}</span>
           {laptopSize ? (

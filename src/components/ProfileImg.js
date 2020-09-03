@@ -1,11 +1,14 @@
 import React, { useContext } from "react";
 import { AppContext } from "../context/AppContext";
 import { useHistory } from "react-router-dom";
+import { ThemeContext } from "../context/ThemeContext";
 
-const ProfileImg = (props) => {
-  const { id, picture } = props;
+const ProfileImg = ({ id, picture }) => {
   const appContext = useContext(AppContext);
   const { clickedPerson, changeClickedPerson } = appContext;
+
+  const themeContext = useContext(ThemeContext);
+  const { theme } = themeContext;
 
   // Access browser history
   const history = useHistory();
@@ -13,7 +16,7 @@ const ProfileImg = (props) => {
   return (
     <div
       className={`${
-        clickedPerson === id ? "bg-blue-700" : "lg:hover:bg-blue-900"
+        clickedPerson === id ? `bg${theme}700` : `lg:hover:bg${theme}900`
       } flex justify-center`}
     >
       <img

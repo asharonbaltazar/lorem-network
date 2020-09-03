@@ -28,7 +28,7 @@ export const AppProvider = ({ children }) => {
 
       // Create fake posts
       const JSONposts = await axios.get(
-        `http://jsonplaceholder.typicode.com/posts?_limit=${
+        `https://jsonplaceholder.typicode.com/posts?_limit=${
           numPosts * numPeople
         }`
       );

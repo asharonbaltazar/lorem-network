@@ -1,11 +1,17 @@
-import React, { useState } from "react";
-import { motion } from "framer-motion";
+import React, { useState, useContext } from "react";
+import { ThemeContext } from "../context/ThemeContext";
 
 const Panel = () => {
+  // Handler for the settings popup
   const [press, setPress] = useState(false);
 
+  const themeContext = useContext(ThemeContext);
+  const { changeTheme, theme } = themeContext;
+
   return (
-    <div className="flex justify-between items-center bg-blue-900 lg:sticky lg:top-0 lg:z-10">
+    <div
+      className={`flex justify-between items-center bg${theme}900 lg:sticky lg:top-0 lg:z-10`}
+    >
       <div>
         <h1 className="text-2xl text-white p-2">Lorem Network</h1>
       </div>
@@ -36,25 +42,49 @@ const Panel = () => {
           </svg>
         </button>
         {press && (
-          <motion.div
+          <div
             className={`w-32 absolute right-0 bg-white rounded-lg p-4 z-20 mr-2 shadow-md`}
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 0.1 }}
           >
             <p className="block px-4 pb-2 text-center">Theme</p>
             <div className="grid grid-cols-3 grid-rows-3 gap-3">
-              <div className="w-6 h-6 bg-red-600 cursor-pointer"></div>
-              <div className="w-6 h-6 bg-orange-600 cursor-pointer"></div>
-              <div className="w-6 h-6 bg-yellow-600 cursor-pointer"></div>
-              <div className="w-6 h-6 bg-green-600 cursor-pointer"></div>
-              <div className="w-6 h-6 bg-blue-600 cursor-pointer"></div>
-              <div className="w-6 h-6 bg-teal-600 cursor-pointer"></div>
-              <div className="w-6 h-6 bg-indigo-600 cursor-pointer"></div>
-              <div className="w-6 h-6 bg-purple-600 cursor-pointer"></div>
-              <div className="w-6 h-6 bg-pink-600 cursor-pointer"></div>
+              <div
+                className="w-6 h-6 bg-red-600 cursor-pointer"
+                onClick={(e) => changeTheme(e.target.className)}
+              ></div>
+              <div
+                className="w-6 h-6 bg-orange-600 cursor-pointer"
+                onClick={(e) => changeTheme(e.target.className)}
+              ></div>
+              <div
+                className="w-6 h-6 bg-yellow-600 cursor-pointer"
+                onClick={(e) => changeTheme(e.target.className)}
+              ></div>
+              <div
+                className="w-6 h-6 bg-green-600 cursor-pointer"
+                onClick={(e) => changeTheme(e.target.className)}
+              ></div>
+              <div
+                className="w-6 h-6 bg-blue-600 cursor-pointer"
+                onClick={(e) => changeTheme(e.target.className)}
+              ></div>
+              <div
+                className="w-6 h-6 bg-teal-600 cursor-pointer"
+                onClick={(e) => changeTheme(e.target.className)}
+              ></div>
+              <div
+                className="w-6 h-6 bg-indigo-600 cursor-pointer"
+                onClick={(e) => changeTheme(e.target.className)}
+              ></div>
+              <div
+                className="w-6 h-6 bg-purple-600 cursor-pointer"
+                onClick={(e) => changeTheme(e.target.className)}
+              ></div>
+              <div
+                className="w-6 h-6 bg-pink-600 cursor-pointer"
+                onClick={(e) => changeTheme(e.target.className)}
+              ></div>
             </div>
-          </motion.div>
+          </div>
         )}
       </div>
     </div>

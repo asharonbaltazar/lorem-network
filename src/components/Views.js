@@ -9,7 +9,7 @@ import { useMediaPredicate } from "react-media-hook";
 
 const Views = () => {
   const appContext = useContext(AppContext);
-  const { getPeoplewithPosts, showComments, people, loading } = appContext;
+  const { getPeoplewithPosts, people, loading } = appContext;
 
   // Media query
   const laptopSize = useMediaPredicate("(min-width: 770px)");
@@ -34,7 +34,7 @@ const Views = () => {
         >
           {loading ? (
             <div className="h-full">
-              <p>Fetching data. Please wait</p>
+              <p className="mr-2 ml-2">Fetching data. Please wait...</p>
               <BarLoader width={"100%"} />
             </div>
           ) : (

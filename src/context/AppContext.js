@@ -72,7 +72,7 @@ export const AppProvider = ({ children }) => {
         // JSONify it for localStorage
         localStorage.setItem("lorem-network", JSON.stringify(people));
       } catch (error) {
-        console.error(error.message);
+        if (error) getPeoplewithPosts(5);
       }
     }
 

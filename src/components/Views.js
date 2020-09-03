@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from "react";
+import { BarLoader } from "react-spinners";
 import PostList from "./PostList";
 import ImgRow from "./ImgRow";
 import CommentList from "./CommentList";
@@ -15,22 +16,36 @@ const Views = () => {
 
   useEffect(() => {
     getPeoplewithPosts(5);
-    if (loading) showComments(1);
     //eslint-disable-next-line
   }, []);
 
+  const loadingStyles = loading
+    ? "flex h-64 justify-center items-center"
+    : "flex flex-col lg:flex-row h-auto";
+
   return (
     <Router>
-      <div className="flex flex-col lg:flex-row h-auto">
+      <div className={loadingStyles}>
         <ImgRow people={people} />
-        <div className="flex lg:flex-row relative w-full">
-          {loading ? null : (
-            <Route exact path="/" render={(props) => <PostList />} />
-          )}
-          {loading ? null : laptopSize ? (
-            <CommentList />
+        <div
+          className={`flex lg:flex-row ${
+            loading ? "justify-center" : ""
+          } relative w-full`}
+        >
+          {loading ? (
+            <div className="h-full">
+              <p>Fetching data. Please wait</p>
+              <BarLoader width={"100%"} />
+            </div>
           ) : (
-            <Route path="/comments" component={CommentList} />
+            <>
+              <Route exact path="/" render={(props) => <PostList />} />
+              {laptopSize ? (
+                <CommentList />
+              ) : (
+                <Route path="/comments" component={CommentList} />
+              )}
+            </>
           )}
         </div>
       </div>

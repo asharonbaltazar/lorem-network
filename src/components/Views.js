@@ -26,7 +26,7 @@ const Views = () => {
 
   const loadingStyles = loading
     ? "flex h-64 justify-center items-center"
-    : "flex flex-col lg:flex-row overflow-hidden";
+    : "flex flex-col lg:flex-row";
 
   return (
     <Router>
@@ -34,11 +34,11 @@ const Views = () => {
         <ImgRow people={people} />
         <div
           className={`flex lg:flex-row  ${textColor} ${
-            loading ? "justify-center" : ""
+            loading ? "justify-center items-center" : ""
           } relative w-full h-full ${baseTheme}`}
         >
           {loading ? (
-            <div className="h-full">
+            <div>
               <p className="mr-2 ml-2">Fetching data. Please wait...</p>
               <BarLoader width={"100%"} />
             </div>

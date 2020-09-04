@@ -1,21 +1,27 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Switch from "react-switch";
 import { ThemeContext } from "../context/ThemeContext";
 
 const Panel = () => {
+  const themeContext = useContext(ThemeContext);
+  const { changeColors, theme, changeBaseTheme } = themeContext;
+
   // Handler for the settings popup
   const [press, setPress] = useState(false);
   const [toggle, setToggle] = useState(false);
 
-  const themeContext = useContext(ThemeContext);
-  const { changeTheme, theme, changeBaseTheme, baseTheme } = themeContext;
+  useEffect(() => {
+    setToggle(theme.baseTheme === "bg-black" ? true : false);
+  }, [theme.baseTheme]);
 
-  const textColor = baseTheme === "bg-white" ? "text-black" : "text-white";
-  const panelColor = baseTheme === "bg-white" ? "bg-white" : "bg-gray-900";
+  const textColor =
+    theme.baseTheme === "bg-white" ? "text-black" : "text-white";
+  const panelColor =
+    theme.baseTheme === "bg-white" ? "bg-white" : "bg-gray-900";
 
   return (
     <div
-      className={`flex justify-between items-center bg${theme}900 lg:sticky lg:top-0 lg:z-10`}
+      className={`flex justify-between items-center bg${theme.colors}900 lg:sticky lg:top-0 lg:z-10`}
     >
       <div>
         <h1 className="text-2xl text-white p-2">Lorem Network</h1>
@@ -54,39 +60,39 @@ const Panel = () => {
             <div className="grid grid-cols-3 grid-rows-3 gap-3">
               <div
                 className="h-12 w-12 lg:w-6 lg:h-6 bg-red-600 cursor-pointer"
-                onClick={(e) => changeTheme(e.target.className)}
+                onClick={(e) => changeColors(e.target.className)}
               ></div>
               <div
                 className="h-12 w-12 lg:w-6 lg:h-6 bg-orange-600 cursor-pointer"
-                onClick={(e) => changeTheme(e.target.className)}
+                onClick={(e) => changeColors(e.target.className)}
               ></div>
               <div
                 className="h-12 w-12 lg:w-6 lg:h-6 bg-yellow-600 cursor-pointer"
-                onClick={(e) => changeTheme(e.target.className)}
+                onClick={(e) => changeColors(e.target.className)}
               ></div>
               <div
                 className="h-12 w-12 lg:w-6 lg:h-6 bg-green-600 cursor-pointer"
-                onClick={(e) => changeTheme(e.target.className)}
+                onClick={(e) => changeColors(e.target.className)}
               ></div>
               <div
                 className="h-12 w-12 lg:w-6 lg:h-6 bg-blue-600 cursor-pointer"
-                onClick={(e) => changeTheme(e.target.className)}
+                onClick={(e) => changeColors(e.target.className)}
               ></div>
               <div
                 className="h-12 w-12 lg:w-6 lg:h-6 bg-teal-600 cursor-pointer"
-                onClick={(e) => changeTheme(e.target.className)}
+                onClick={(e) => changeColors(e.target.className)}
               ></div>
               <div
                 className="h-12 w-12 lg:w-6 lg:h-6 bg-indigo-600 cursor-pointer"
-                onClick={(e) => changeTheme(e.target.className)}
+                onClick={(e) => changeColors(e.target.className)}
               ></div>
               <div
                 className="h-12 w-12 lg:w-6 lg:h-6 bg-purple-600 cursor-pointer"
-                onClick={(e) => changeTheme(e.target.className)}
+                onClick={(e) => changeColors(e.target.className)}
               ></div>
               <div
                 className="h-12 w-12 lg:w-6 lg:h-6 bg-pink-600 cursor-pointer"
-                onClick={(e) => changeTheme(e.target.className)}
+                onClick={(e) => changeColors(e.target.className)}
               ></div>
             </div>
             <div className="mt-4">
@@ -110,7 +116,7 @@ const Panel = () => {
                   uncheckedIcon={
                     <div className="flex justify-center items-center h-full">
                       <svg
-                        className={`w-6 h-6 text${theme}500`}
+                        className={`w-6 h-6 text${theme.colors}500`}
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
@@ -128,7 +134,7 @@ const Panel = () => {
                   checkedIcon={
                     <div className="flex justify-center items-center text-white h-full">
                       <svg
-                        className={`w-6 h-6 text${theme}300`}
+                        className={`w-6 h-6 text${theme.colors}300`}
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"

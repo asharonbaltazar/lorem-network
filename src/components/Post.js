@@ -17,12 +17,13 @@ const Post = ({ id, header, body, transitionItem, comments }) => {
 
   return (
     <motion.div
+      id={id}
       className="h-auto w-full mt-2 mb-2 lg:max-w-lg p-2 rounded-sm border"
       variants={transitionItem}
     >
       <h1 className="font-semibold text-lg mb-4">{header}</h1>
       <p className="mb-2">{body}</p>
-      <div className={`flex justify-end text${theme}500`}>
+      <div className={`flex justify-end text${theme.colors}500`}>
         <div className="flex items-center">
           <span>{comments.length}</span>
           {laptopSize ? (

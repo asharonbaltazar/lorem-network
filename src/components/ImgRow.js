@@ -10,7 +10,7 @@ const ImgRow = ({ people, loading }) => {
     <>
       {loading ? null : (
         <div
-          className={`bg${theme}800 flex flex-row content-center sticky top-0 lg:flex-col z-10 lg:z-0 flex-shrink-0`}
+          className={`bg${theme.colors}800 flex flex-row content-center sticky top-0 lg:flex-col z-10 lg:z-0 flex-shrink-0`}
         >
           {people.map((person, index) => (
             <ProfileImg

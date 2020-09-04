@@ -12,15 +12,17 @@ const Views = () => {
   const appContext = useContext(AppContext);
   const { getPeoplewithPosts, people, loading } = appContext;
   const themeContext = useContext(ThemeContext);
-  const { baseTheme } = themeContext;
+  const { theme, setTheme } = themeContext;
 
-  const textColor = baseTheme === "bg-white" ? "text-black" : "text-white";
+  const textColor =
+    theme.baseTheme === "bg-white" ? "text-black" : "text-white";
 
   // Media query
   const laptopSize = useMediaPredicate("(min-width: 770px)");
 
   useEffect(() => {
     getPeoplewithPosts(5);
+    setTheme();
     //eslint-disable-next-line
   }, []);
 
@@ -35,7 +37,7 @@ const Views = () => {
         <div
           className={`flex lg:flex-row  ${textColor} ${
             loading ? "justify-center items-center" : ""
-          } relative w-full h-full ${baseTheme}`}
+          } relative w-full h-full ${theme.baseTheme}`}
         >
           {loading ? (
             <div>

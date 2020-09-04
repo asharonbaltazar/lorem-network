@@ -43,7 +43,7 @@ const CommentList = () => {
   return (
     <Route
       render={(props) => (
-        <div className="md:w-2/4 p-2 h-auto">
+        <div className="md:w-2/4 p-2 h-screen">
           {laptopSize ? (
             <h1 className="font-bold mb-2">REPLIES</h1>
           ) : (

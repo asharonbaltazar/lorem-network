@@ -21,6 +21,12 @@ export default (state, action) => {
         )[0].comments,
       };
 
+    case "CLEAR_COMMENTS":
+      return {
+        ...state,
+        comments: action.payload,
+      };
+
     default:
       return {
         ...state,

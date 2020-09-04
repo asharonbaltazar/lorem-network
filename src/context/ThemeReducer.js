@@ -1,6 +1,11 @@
 export default (state, action) => {
   switch (action.type) {
-    case "CHANGE_THEME":
+    case "SET_THEME":
+      return {
+        ...state,
+        theme: action.payload,
+      };
+    case "CHANGE_COLORS":
       return {
         ...state,
         theme: action.payload,
@@ -9,7 +14,7 @@ export default (state, action) => {
     case "CHANGE_BASE_THEME":
       return {
         ...state,
-        baseTheme: action.payload,
+        theme: action.payload,
       };
 
     default:

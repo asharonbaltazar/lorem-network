@@ -5,7 +5,7 @@ import { ThemeContext } from "../context/ThemeContext";
 
 const ProfileImg = ({ id, picture }) => {
   const appContext = useContext(AppContext);
-  const { clickedPerson, changeClickedPerson } = appContext;
+  const { clickedPerson, changeClickedPerson, clearComments } = appContext;
 
   const themeContext = useContext(ThemeContext);
   const { theme } = themeContext;
@@ -16,7 +16,9 @@ const ProfileImg = ({ id, picture }) => {
   return (
     <div
       className={`${
-        clickedPerson === id ? `bg${theme}700` : `lg:hover:bg${theme}900`
+        clickedPerson === id
+          ? `bg${theme.colors}700`
+          : `lg:hover:bg${theme.colors}900`
       } flex justify-center`}
     >
       <img
@@ -26,6 +28,7 @@ const ProfileImg = ({ id, picture }) => {
         id={id}
         onClick={(e) => {
           changeClickedPerson(e.target.id);
+          clearComments();
           history.push("/");
         }}
       />
